@@ -1,0 +1,11 @@
+class Solution {
+public:
+    vector<int> pivotArray(vector<int>& q, int pivot) {
+        vector<int> a;
+        vector<int> b;
+        vector<int> c1;
+        for(auto c : q)
+        {
+            if(c < pivot)
+                a.push_back(c);
+…};
