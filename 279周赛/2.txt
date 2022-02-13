@@ -1,0 +1,43 @@
+long long int a[2000000];
+class Solution {
+public:
+    long long smallestNumber(long long num) {
+        int i = 0;
+        int flag = 0;
+        long long int ans = 0;
+        if(num == 0)return 0;
+        long long int temp = 1;
+        if(num < 0) 
+        {
+            flag = 1;
+            num = - num;
+        }
+        while(num != 0)
+        {
+            a[i++] = num % 10;
+            num = num / 10;
+        }
+        if(flag == 1)
+        {
+        sort(a, a + i, greater<int>());
+        for(int j = 0; j < i ; j++) ans= ans * 10 + a[j];
+            return -ans;
+        }
+        sort(a, a + i);
+        int k = 0;
+        while(a[k] == 0)
+        {
+            //temp ++; //0个数
+            k ++;
+            temp *= 10;
+        }
+        ans = temp * a[k];
+        
+        for(int j = k + 1; j < i ; j++)
+        {
+        ans = ans * 10 + a[j];    
+        }
+
+        return ans;     
+    }
+};

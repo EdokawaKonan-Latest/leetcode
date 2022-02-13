@@ -1,0 +1,15 @@
+        bool cmp(int x,int y)
+    {
+	    return x > y;
+    }
+class Solution {
+public:
+
+    vector<int> sortEvenOdd(vector<int>& nums) {
+        vector<int> a;
+        vector<int> b;
+…            else c.push_back(b[j++]);
+    return c;
+    }
+    
+};
