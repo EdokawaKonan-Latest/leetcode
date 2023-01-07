@@ -1,0 +1,46 @@
+class Allocator {
+public:
+    int n = 0;
+    vector<int> f1;
+    Allocator(int n) {
+        this->n = n;
+        vector<int> f(n);
+        this->f1 = f;
+    }
+    int allocate(int size, int mid) {
+        int cnt = 0;
+        for(int i = 0; i < f1.size(); i++) {
+            if(f1[i] == 0) {
+                cnt ++;
+                if(cnt == size) {
+                    int j;
+                    for(j = i - size + 1;j <= i; j++) {
+                        f1[j] = mid;
+                    }
+                    return i - size + 1;
+                }
+            }
+            else cnt = 0;
+        }
+        return -1;
+    }
+    
+    int free(int mid) {
+        int ans = 0;
+        for(int i = 0; i < n; i++) {
+            if(f1[i] == mid) {
+                f1[i] = 0;
+                ans ++;
+            }
+        }
+        return ans;
+        
+    }
+};
+
+/**
+ * Your Allocator object will be instantiated and called as such:
+ * Allocator* obj = new Allocator(n);
+ * int param_1 = obj->allocate(size,mID);
+ * int param_2 = obj->free(mID);
+ */
