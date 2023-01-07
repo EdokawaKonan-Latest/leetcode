@@ -1,0 +1,45 @@
+const int N = 1e5;
+class DataStream {
+public:
+    int arr[N + 10];
+    int l, r, k, value, max = 0;
+    map<int, int> count;
+    DataStream(int value, int k) {
+        count.clear();
+        l = r = 0;
+        this->k = k;
+        this->value = value;
+        max = 0;
+    }
+    
+    bool consec(int num) {
+        count[num] ++;
+        arr[r++] = num;
+        max++;
+        //cout << max << endl;
+        if(max < k) 
+            return false;
+        else if(max == k){
+            if(count[value] == k) 
+                return true;
+            else 
+                return false;
+        }
+        else if(max == k + 1) {
+            max--;
+            count[arr[l++]] --;
+            if(count[value] == k) 
+                return true;
+            else 
+                return false;
+        }
+        return false;
+    
+    }
+};
+
+/**
+ * Your DataStream object will be instantiated and called as such:
+ * DataStream* obj = new DataStream(value, k);
+ * bool param_1 = obj->consec(num);
+ */

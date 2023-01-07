@@ -1,0 +1,26 @@
+
+class Solution {
+public:
+    string categorizeBox(int length, int  width, int height, int mass) {
+        map<int, bool> b, h;
+        long long v = (long long)length * width * height;
+        long temp = max(max(length, width), height);
+        if(v >= 1e9 || temp >= 1e4) 
+            b[1] = true;
+        else 
+            b[1] = false;
+        if(mass >= 100)
+            h[1] = true;
+        else
+            h[1] = false;
+        if(h[1] && b[1]) return "Both";
+        else 
+            if(b[1] && !h[1])
+                return "Bulky";
+        else 
+            if(!b[1] && h[1])
+                return "Heavy";
+        else
+            return "Neither";
+    }
+};
